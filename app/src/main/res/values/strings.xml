@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TP</string>
+    <string name="t_tulo">Título</string>
+    <string name="a_o_de_estreno">Año de estreno</string>
+    <string name="comentario">Comentario</string>
+    <string name="guardar_pel_cula">Guardar Película</string>
+    <string name="imagen_de_pel_cula">Imagen de película</string>
+    <string name="borrar">Borrar</string>
+    <string name="editar">Editar</string>
+    <string name="t_titulo">Título</string>
+    <string name="g_nero">Género</string>
+    <string name="a_o">Año</string>
+    <string name="g_comentario">Comentario</string>
+    <string name="g_imagen_de_pel_cula">imagen de película</string>
+    <string name="lista_de_pel_culas">Lista de películas:</string>
+    <string name="agregar_otra_pel_cula">Agregar otra película</string>
+</resources>
