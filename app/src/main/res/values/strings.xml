@@ -14,4 +14,5 @@
     <string name="g_imagen_de_pel_cula">imagen de película</string>
     <string name="lista_de_pel_culas">Lista de películas:</string>
     <string name="agregar_otra_pel_cula">Agregar otra película</string>
+    <string name="cancelar">cancelar</string>
 </resources>

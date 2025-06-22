@@ -11,14 +11,14 @@ class PeliculasViewModel: ViewModel() {
             "Spiderman",
             1990,
             "Una pelicula sobre superheroes",
-            Generos.ACCION,
+            Genero.ACCION,
             "https://i.blogs.es/c7ed10/screenshot_90/1366_2000.jpeg"
         ),
         Pelicula(
             "Batman",
             1990,
             "El murcielago pa",
-            Generos.ACCION,
+            Genero.ACCION,
             "https://media.revistagq.com/photos/621f6d1723b7738d21d91e1d/1:1/w_1439,h_1439,c_limit/batman-uhdpaper.com-4K-17.jpg"
         )
     ))

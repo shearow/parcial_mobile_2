@@ -7,7 +7,7 @@ data class Pelicula(
     val titulo: String,
     val estreno: Int,
     val comentario: String,
-    val genero: Generos,
+    val genero: Genero,
     val imagenUri: String,
     val id: String = UUID.randomUUID().toString()
 ): Serializable

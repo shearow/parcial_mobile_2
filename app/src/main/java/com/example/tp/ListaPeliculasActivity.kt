@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tp.adapter.PeliculaAdapter
@@ -14,12 +13,10 @@ class ListaPeliculasActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListaPeliculasBinding
 
-    private val vm: PeliculasViewModel by viewModels()
-
-    private var estadoGuardado: String = "initial"
+    private val vm: PeliculasViewModel get() = (application as App).peliculasViewModel
 
     private val onEditarClick: (Pelicula) -> Unit = { pelicula ->
-        Toast.makeText(this, "Editar: ${pelicula.titulo}", Toast.LENGTH_SHORT).show()
+        navegarAMainActivity(EstadoFormularioPelicula.EDITAR, pelicula)
     }
 
     private val onEliminarClick: (Pelicula) -> Unit = { pelicula ->
@@ -54,26 +51,21 @@ class ListaPeliculasActivity : AppCompatActivity() {
 
     private fun initUI(){
         val peliculaGuardada = intent.getSerializableExtra("peliculaGuardada") as? Pelicula
-        estadoGuardado = intent.getStringExtra("estado").toString()
-
-        if(estadoGuardado == "crear"){
-            vm.agregarPelicula(peliculaGuardada)
-            Toast.makeText(this, "Pelicula agregada correctamente", Toast.LENGTH_SHORT).show()
-        }
-
-        if(estadoGuardado == "editar"){
-            vm.editarPelicula(peliculaGuardada)
-            Toast.makeText(this, "Pelicula editada correctamente", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun initListener() {
         binding.btnCargarOtraPelicula.setOnClickListener { navegarAMainActivity() }
     }
 
-    private fun navegarAMainActivity(){
+    private fun navegarAMainActivity(
+        estado: EstadoFormularioPelicula = EstadoFormularioPelicula.CREAR,
+        pelicula: Pelicula? = null
+    ){
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("estado", "crear")
+        intent.putExtra("estado", estado.name)
+        pelicula?.let {
+            intent.putExtra("peliculaEditada", it)
+        }
         startActivity(intent)
     }
 

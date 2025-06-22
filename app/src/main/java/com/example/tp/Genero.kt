@@ -1,6 +1,6 @@
 package com.example.tp
 
-enum class Generos(val nombre: String) {
+enum class Genero(val nombre: String) {
     ACCION("Acción"),
     COMEDIA("Comedia"),
     TERROR("Terror"),
