@@ -15,4 +15,5 @@
     <string name="lista_de_pel_culas">Lista de películas:</string>
     <string name="agregar_otra_pel_cula">Agregar otra película</string>
     <string name="cancelar">cancelar</string>
+    <string name="url_de_la_imagen">URL de la imagen</string>
 </resources>

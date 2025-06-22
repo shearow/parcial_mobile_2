@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tp.databinding.ActivityMainBinding
 import java.util.Calendar
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
             binding.etYear.setText(peliculaAEditar?.estreno?.toString() ?: "")
             binding.etComentario.setText(peliculaAEditar?.comentario ?: "")
-            //binding.imgPelicula
+            binding.etUrlImagen.setText(peliculaAEditar?.imagenUri ?: "")
         }
     }
 
@@ -61,14 +62,10 @@ class MainActivity : AppCompatActivity() {
         val generoEnum = Genero.entries.find { it.nombre == generoSeleccionado }
         val year = binding.etYear.text.toString().toIntOrNull()
         val comentario = binding.etComentario.text.toString().trim()
-        val imagen = "https://occ-0-8407-90.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABaAm9ikezHWeiJVLFrHz35HKqm_KFvh74oNzZmPK5AGKzPUlxh51Tvv1bvXTqFPXEF6KfZe1jAQ_eHjeBu4UYJ5Cx1SPtx5UZH_2.jpg?r=b47"
+        val imagenUrl = binding.etUrlImagen.text.toString().trim()
 
         if(titulo.isEmpty() || titulo.length > 20) {
             Toast.makeText(this, "El título no puede estar vacío", Toast.LENGTH_SHORT).show()
-            return
-        }
-        if(titulo.length > 20) {
-            Toast.makeText(this, "El título no puede superar los 20 carácteres", Toast.LENGTH_SHORT).show()
             return
         }
         if(year == null) {
@@ -89,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val id = peliculaAEditar?.id ?: java.util.UUID.randomUUID().toString()
-        val nuevaPelicula = Pelicula(titulo, year, comentario, generoEnum, imagen, id)
+        val nuevaPelicula = Pelicula(titulo, year, comentario, generoEnum, imagenUrl, id)
 
         if(estadoGuardado == EstadoFormularioPelicula.CREAR){
             vm.agregarPelicula(nuevaPelicula)

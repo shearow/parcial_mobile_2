@@ -37,20 +37,18 @@ class ListaPeliculasActivity : AppCompatActivity() {
 
         binding.rvPeliculas.layoutManager = LinearLayoutManager(this)
 
-        vm.peliculas.observe( this, {pelis ->
-            binding.rvPeliculas.adapter = PeliculaAdapter(
-                pelis,
-                onEditarClick = onEditarClick,
-                onEliminarClick = onEliminarClick
-            )
-        })
-
         initUI()
         initListener()
     }
 
     private fun initUI(){
-        val peliculaGuardada = intent.getSerializableExtra("peliculaGuardada") as? Pelicula
+        vm.peliculas.observe(this) { pelis ->
+            binding.rvPeliculas.adapter = PeliculaAdapter(
+                pelis,
+                onEditarClick = onEditarClick,
+                onEliminarClick = onEliminarClick
+            )
+        }
     }
 
     private fun initListener() {
