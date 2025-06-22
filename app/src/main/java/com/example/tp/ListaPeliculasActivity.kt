@@ -2,6 +2,7 @@ package com.example.tp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -43,11 +44,16 @@ class ListaPeliculasActivity : AppCompatActivity() {
 
     private fun initUI(){
         vm.peliculas.observe(this) { pelis ->
-            binding.rvPeliculas.adapter = PeliculaAdapter(
-                pelis,
-                onEditarClick = onEditarClick,
-                onEliminarClick = onEliminarClick
-            )
+            if(pelis.isEmpty()) {
+                binding.tvSinPeliculas.visibility = View.VISIBLE
+                binding.rvPeliculas.visibility = View.GONE
+            }else {
+                binding.rvPeliculas.adapter = PeliculaAdapter(
+                    pelis,
+                    onEditarClick = onEditarClick,
+                    onEliminarClick = onEliminarClick
+                )
+            }
         }
     }
 
